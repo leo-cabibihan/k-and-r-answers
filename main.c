@@ -211,12 +211,14 @@ int main()
 //Write a program that prints its input one word per line
 
 /*
+
 int main()
 {
   int c, blanks, start;
   blanks = start = 0;
   while ((c = getchar()) != EOF) 
-  {
+  { 
+    printf("c: %d, blanks:%d start:%d\n", c, blanks, start);
     if (start == 0)
     {
       printf("\n");
@@ -244,9 +246,95 @@ int main()
 //1-13
 //Write a program to print a histogram of the lengths of words in its input. It is
 //easy to draw the histogram with the bars horizontal; a vertical orientation is more challenging
+
+//vertical is character count, an array
+//horizontal how much each array thingy is
+
+
+/* an example with */
+// int main()
+// {
+//   int c, i, nwhite, nother;
+//   int ndigit[10];
+//   nwhite = nother = 0;
+//   for (i = 0; i < 10; ++i)
+//     ndigit[i] = 0;
+//   while ((c = getchar()) != EOF)
+//   if (c >= '0' && c <= '9')
+//     ++ndigit[c-'0'];
+//   else if (c == ' ' || c == '\n' || c == '\t')
+//     ++nwhite;
+//   else
+//     ++nother;
+//   printf("digits =");
+//   for (i = 0; i < 10; ++i)
+//     printf(" %d", ndigit[i]);
+//   printf(", white space = %d, other = %d\n", nwhite, nother);
+//   return 0;
+// }
+
+
+#define IN 1
+#define OUT 0
+
+int main() 
+{
+  int c, characterCount, i, len, state;
+  state = OUT;
+  characterCount = 0;
+  len = 100;
+  int wordLengths[100];
+  for (i = 0; i < len; i++)
+    wordLengths[i] = 0;
+  
+  while ((c = getchar()) != EOF) 
+  {
+    if (c == ' ' || c == '\n' || c == '\t')
+    {
+      state = OUT;
+      characterCount = 0;
+    }
+    else if (state == OUT)
+    {
+      state = IN;
+      characterCount = 1;
+      wordLengths[characterCount]++;
+    }
+    else if (state == IN)
+    {
+      wordLengths[characterCount]--;
+      characterCount++;
+      wordLengths[characterCount]++;
+    }
+      
+  }
+  //show histogram
+  printf("\nthis is a histogram lol \n");
+  for (i = 0; i < len; i++)
+  {
+    if (wordLengths[i] > 0){
+      printf("%d ", i);
+      for (int j = 0; j < wordLengths[i]; j++)
+        printf("#");
+      printf("\n");
+    }
+  }
+
+  return 0;
+}
+
+
+
+
 //1-14
 //Write a program to print a histogram of the frequencies of different characters
 // in its input.
+
+
+
+
+
+
 //1-15
 
 // Rewrite the temperature conversion program of Section 1.2 to use a function
