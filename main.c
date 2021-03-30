@@ -273,7 +273,7 @@ int main()
 //   return 0;
 // }
 
-
+/*
 #define IN 1
 #define OUT 0
 
@@ -322,6 +322,7 @@ int main()
 
   return 0;
 }
+*/
 
 
 
@@ -330,9 +331,30 @@ int main()
 //Write a program to print a histogram of the frequencies of different characters
 // in its input.
 
+/*
 
+int main()
+{
+  int c, i;
+  int characterFrequency[128];
+  for (i = 0; i < 128; i++)
+    characterFrequency[i] = 0;
+  while ((c = getchar()) != EOF) 
+    characterFrequency[c]++;
+  for (i = 0; i < 128;  i++)
+  {
+    if (characterFrequency[i] > 0)
+    {
+      printf("\n");
+      putchar(i);
+      for (int j = 0; j < characterFrequency[i]; j++)
+        printf(" -");
+    }
+  }
+  return 0;
+}
 
-
+*/
 
 
 //1-15
