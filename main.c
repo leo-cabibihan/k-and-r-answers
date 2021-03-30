@@ -361,3 +361,24 @@ int main()
 
 // Rewrite the temperature conversion program of Section 1.2 to use a function
 // for conversion.
+
+int tempConversionTable()
+{
+  int fahr, celsius, lower, upper, step;
+  lower = 0; /* lower limit of temperature scale */
+  upper = 300; /* upper limit */
+  step = 20; /* step size */
+  fahr = lower;
+  while (fahr <= upper) {
+    celsius = 5 * (fahr-32) / 9;
+    printf("%d\t%d\n", fahr, celsius);
+    fahr = fahr + step;
+  }
+  return celsius;
+}
+
+int main()
+{
+  tempConversionTable();
+  return 0;
+}
