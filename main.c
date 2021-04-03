@@ -358,16 +358,37 @@ int main()
 
 
 //1-15
-
 // Rewrite the temperature conversion program of Section 1.2 to use a function
 // for conversion.
 
+// int power(int, int);
+
+// int main()
+// {
+//   int i;
+
+//   for (i = 0; i < 10; i++)
+//     printf("%d %d %d \n", i, power(2,i), power(-3,i));
+  
+//   return 0;
+// }
+
+// int power(int base, int n)
+// {
+//   int i, p;
+//   p = 1;
+//   for (i = 0; i <= n; i++)
+//     p = p * base;
+//   return p;
+// }
+
+/*
 int tempConversionTable()
 {
   int fahr, celsius, lower, upper, step;
-  lower = 0; /* lower limit of temperature scale */
-  upper = 300; /* upper limit */
-  step = 20; /* step size */
+  lower = 0; 
+  upper = 300; 
+  step = 20; 
   fahr = lower;
   while (fahr <= upper) {
     celsius = 5 * (fahr-32) / 9;
@@ -382,3 +403,224 @@ int main()
   tempConversionTable();
   return 0;
 }
+*/
+
+//arguments get a new value but arrays arguments can be mutated
+
+//Exercise 1-16. Revise the main routine of the longest-line program so it
+//will correctly the length of arbitrary long input lines, and as much as
+//possible of the text.
+
+/*
+#define MAXLINE 1000
+
+int myGetLine(char line[], int maxline);
+
+
+int main()
+{
+  int len;
+  int max;
+  char line[MAXLINE];
+  char longest[MAXLINE];
+  
+  max = 0;
+
+  while ((len = myGetLine(line, MAXLINE)) > 0)
+  {
+    //count length of line
+    printf("%d %s", len, line);
+    if (len > max) {
+      max = len;
+      copy(longest, line);
+    }
+  }
+
+  if (max > 0)
+    printf("%s", longest);
+  
+  return 0;
+}
+
+int myGetLine(char s[], int lim)
+{
+  int c, i;
+  
+  for (i = 0; i < lim - 2 && (c=getchar()) != EOF && c!= '\n'; i++)
+    s[i] = c;
+  if (c == '\n')
+  {
+    s[i] = c;
+    i++;
+  }
+  s[i] = '\0';
+  return i;
+}
+
+void copy(char to[], char from[])
+{
+  int i;
+
+  i = 0;
+  while ((to[i] = from[i]) != '\0')
+  {
+    i++;
+  }
+}
+*/
+
+
+
+
+//Exercise 1-17. Write a program to print all input 
+//lines that are longer than 80 characters.
+
+/*
+#define MAXLINE 1000
+
+int myGetLine(char line[], int maxline);
+
+void copy(char to[], char from[]);
+
+int main()
+{
+  int len;
+  int max;
+  char line[MAXLINE];
+  
+
+  while ((len = myGetLine(line, MAXLINE)) > 0)
+  {
+    if (len > 80) {
+      printf("%s", line);
+    }
+  }
+
+  return 0;
+}
+
+int myGetLine(char s[], int lim)
+{
+  int c, i;
+  
+  for (i = 0; i < lim - 2 && (c=getchar()) != EOF && c!= '\n'; i++)
+    s[i] = c;
+  if (c == '\n')
+  {
+    s[i] = c;
+    i++;
+  }
+  s[i] = '\0';
+  return i;
+}
+
+
+
+
+*/
+
+
+//Exercise 1-18. Write a program to remove trailing blanks and tabs from 
+//each line of input, and to delete entirely blank lines.
+
+/*
+#define MAXLINE 1000
+
+int myGetLine(char line[], int maxline);
+
+
+int main()
+{
+  int len, i;
+  char line[MAXLINE];
+  
+
+  while ((len = myGetLine(line, MAXLINE)) > 0)
+  {
+    if (line[0] != '\0')
+      for ( i = len - 2; line[i] == ' ' || line[i] == '\t' ;i--)
+      {
+        line[i] = '\n';
+        line[i + 1] = '\0';
+      }
+      
+      printf("%s",line);
+
+  }
+
+  return 0;
+}
+
+int myGetLine(char s[], int lim)
+{
+  int c, i;
+  
+  for (i = 0; i < lim - 1 && (c=getchar()) != EOF && c!= '\n'; i++)
+    s[i] = c;
+  if (c == '\n')
+  {
+    s[i] = c;
+    i++;
+  }
+  s[i] = '\0';
+  return i;
+}
+*/
+
+//Exercise 1-19. Write a function reverse(s) that reverses the character 
+//string s. Use it to write a program that reverses its input a line
+//at a time.
+
+#define MAXLINE 1000
+
+int myGetLine(char line[], int maxline);
+
+void reverse(char line[]);
+
+int main()
+{
+  int len;
+  char line[MAXLINE];
+
+  while ((len = myGetLine(line, MAXLINE)) > 0)
+    reverse(line);
+    printf("%s", line);
+
+  return 0;
+}
+
+void reverse(char line[])
+{
+  int i, len;
+  char temp;
+  len = 0;
+  while (line[len] !=  '\n')
+    len++;
+  for(i = 0; i <= len; i++)
+  {
+    temp = line[i];
+    line[i] = line[len - i];
+    line[len - i] = temp;
+  }
+  line[len] = '\n';
+  line[len + 1] = '\0';
+}
+
+int myGetLine(char s[], int lim)
+{
+  int c, i;
+  
+  for (i = 0; i < lim - 1 && (c=getchar()) != EOF && c!= '\n'; i++)
+    s[i] = c;
+  if (c == '\n')
+  {
+    s[i] = c;
+    i++;
+  }
+  s[i] = '\0';
+  return i;
+}
+
+
+
+
